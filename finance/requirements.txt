@@ -1,0 +1,17 @@
+# 财务软件 - 依赖包清单
+# pip install -r requirements.txt
+
+# ── 图形界面 ──
+PyQt6>=6.5.0
+
+# ── Excel 导入导出 ──
+openpyxl>=3.1.0
+
+# ── PDF 导出（可选） ──
+# reportlab>=4.0
+
+# ── 数据库 ──
+# SQLite3 (Python 内置，无需安装)
+
+# ── 打包 ──
+# pyinstaller>=6.0   (仅构建便携版时需要)

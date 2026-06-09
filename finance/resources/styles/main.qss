@@ -1,0 +1,88 @@
+/* 全局样式 */
+QMainWindow {
+    background-color: #F5F6FA;
+}
+
+/* 导航面板 */
+QTreeWidget {
+    background-color: #FFFFFF;
+    border: none;
+    border-right: 1px solid #E0E0E0;
+    padding: 8px;
+}
+
+QTreeWidget::item {
+    padding: 6px 12px;
+    border-radius: 4px;
+}
+
+QTreeWidget::item:hover {
+    background-color: #E8F0FE;
+}
+
+QTreeWidget::item:selected {
+    background-color: #1A73E8;
+    color: #FFFFFF;
+}
+
+/* 表格 */
+QTableWidget {
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    gridline-color: #F0F0F0;
+}
+
+QTableWidget::item {
+    padding: 4px 8px;
+}
+
+QHeaderView::section {
+    background-color: #F8F9FA;
+    border: none;
+    border-bottom: 2px solid #E0E0E0;
+    padding: 8px;
+    font-weight: bold;
+}
+
+/* 按钮 */
+QPushButton {
+    background-color: #1A73E8;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 13px;
+}
+
+QPushButton:hover {
+    background-color: #1557B0;
+}
+
+QPushButton:pressed {
+    background-color: #0D47A1;
+}
+
+QPushButton:disabled {
+    background-color: #CCCCCC;
+    color: #888888;
+}
+
+/* 输入框 */
+QLineEdit, QComboBox, QDateEdit {
+    background-color: #FFFFFF;
+    border: 1px solid #D0D0D0;
+    border-radius: 4px;
+    padding: 6px 10px;
+}
+
+QLineEdit:focus, QComboBox:focus, QDateEdit:focus {
+    border-color: #1A73E8;
+}
+
+/* 状态栏 */
+QStatusBar {
+    background-color: #FFFFFF;
+    border-top: 1px solid #E0E0E0;
+    color: #666666;
+}
