@@ -46,10 +46,10 @@ jobs:
       run: |
         $exePath = "finance/dist/智能财务系统.exe"
         if (Test-Path $exePath) {
-          Write-Host "✅ EXE文件生成成功！"
+          Write-Host "EXE file created successfully!"
           Get-Item $exePath | Select-Object Name, Length
         } else {
-          Write-Host "❌ EXE文件未生成"
+          Write-Host "EXE file NOT found"
           exit 1
         }
       shell: pwsh
@@ -66,8 +66,8 @@ jobs:
     - name: 打印下载信息
       run: |
         Write-Host "======================================"
-        Write-Host "✅ EXE文件已自动上传到Release！"
-        Write-Host "下载地址: https://github.com/${{ github.repository }}/releases/tag/${{ github.event.release.tag_name }}"
+        Write-Host "EXE file uploaded to Release!"
+        Write-Host "Download: https://github.com/${{ github.repository }}/releases/tag/${{ github.event.release.tag_name }}"
         Write-Host "======================================"
       shell: pwsh
 
