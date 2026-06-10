@@ -34,7 +34,7 @@ jobs:
         pip install PyQt6 openpyxl pyinstaller
       shell: pwsh
     
-    # 步骤4：直接运行PyInstaller打包（更简单的方法）
+    # 步骤4：直接运行PyInstaller打包
     - name: 打包EXE
       run: |
         cd finance
@@ -70,3 +70,72 @@ jobs:
         Write-Host "下载地址: https://github.com/${{ github.repository }}/releases/tag/${{ github.event.release.tag_name }}"
         Write-Host "======================================"
       shell: pwsh
+
+  build-macos-app:
+    name: 打包macOS APP
+    runs-on: macos-latest
+    
+    steps:
+    - name: 检出代码
+      uses: actions/checkout@v4
+    
+    - name: 设置Python 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+    
+    - name: 安装依赖
+      run: |
+        python -m pip install --upgrade pip
+        pip install PyQt6 openpyxl pyinstaller
+    
+    - name: 打包macOS应用
+      run: |
+        cd finance
+        pyinstaller --windowed --name "智能财务系统" main.py
+    
+    - name: 创建DMG安装包
+      run: |
+        cd finance/dist
+        hdiutil create -volname "智能财务系统" -srcfolder "智能财务系统.app" -ov -format UDZO "智能财务系统.dmg"
+    
+    - name: 上传DMG到Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: finance/dist/智能财务系统.dmg
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build-linux-appimage:
+    name: 打包Linux AppImage
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 检出代码
+      uses: actions/checkout@v4
+    
+    - name: 设置Python 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+    
+    - name: 安装依赖
+      run: |
+        python -m pip install --upgrade pip
+        pip install PyQt6 openpyxl pyinstaller
+        sudo apt-get update
+        sudo apt-get install -y fuse libfuse2
+    
+    - name: 打包Linux可执行文件
+      run: |
+        cd finance
+        pyinstaller --onefile --name "智能财务系统" main.py
+    
+    - name: 上传到Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: finance/dist/智能财务系统
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
